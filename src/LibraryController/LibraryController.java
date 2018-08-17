@@ -50,7 +50,10 @@ public class LibraryController {
         this.theView.setBackViewBooksButtonStudent(new backViewBooksButtonListenerStudent());
         this.theView.setBackSearchBooksButtonLibrarian(new backSearchButtonListenerLibrarian());
         this.theView.setBackSearchBooksButtonStudent(new backSearchButtonListenerStudent());
-
+        this.theView.setSearchBooksIntFirstFrameLibrarianAuthorSearch(new backSearchAuthorLibrarianButton());
+        this.theView.setSearchBooksIntFirstFrameLibrarianTitleSearch(new backSearchTitleLibrarianButton());
+        this.theView.setSearchBooksIntFirstFrameStudentAuthorSearch(new backSearchAuthorStudentButton());
+        this.theView.setSearchBooksIntFirstFrameStudentTitleSearch(new backSearchTitleStudentButton());
 
         this.theView.addBooksLibPanel(new addBookLibrarianListener());
         this.theView.addBooksButtonAddBooks(new addBooksButtonAddBooks());
@@ -61,6 +64,8 @@ public class LibraryController {
         this.theView.searchBooksStudentButton(new searchBooksLoggedStudentButton());
         this.theView.searchBooksInsideLibrarianButton(new searchBooksButtonListenerLibrarian());
         this.theView.searchAuthorInsideLibrarianButton(new searchBooksAuthorButtonListenerLibrarian());
+        this.theView.searchBooksInsideStudentButton(new searchBooksButtonListenerStudent());
+        this.theView.searchAuthorInsideStudentButton(new searchBooksAuthorButtonListenerStudent());
         this.theView.removeBookByTitleButton(new removeBookByTitleButtonListener());
         this.theView.removeBooksByAuthorButton(new removeBooksByAuthorButtonListener());
 
@@ -84,6 +89,57 @@ public class LibraryController {
         this.theView.setContactFrame(new contactButtonListener());
 
 
+    }
+
+    class backSearchAuthorStudentButton implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            try {
+                theView.setSearchBooksFirstFrameFromSearchAuthorStudent();
+
+            }catch (Exception e1){
+                e1.printStackTrace();
+            }
+        }
+    }
+
+    class backSearchTitleStudentButton implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            try {
+
+                theView.setSearchBooksFirstFrameFromSearchTitleStudent();
+
+            }catch (Exception e1){
+                e1.printStackTrace();
+            }
+        }
+    }
+
+
+    class backSearchAuthorLibrarianButton implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            try {
+                theView.setSearchBooksFirstFrameFromSearchAuthor();
+
+            }catch (Exception e1){
+                e1.printStackTrace();
+            }
+        }
+    }
+
+    class backSearchTitleLibrarianButton implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            try {
+
+                theView.setSearchBooksFirstFrameFromSearchTitle();
+
+            }catch (Exception e1){
+                e1.printStackTrace();
+            }
+        }
     }
 
     class removeBookByTitleButtonListener implements ActionListener{
@@ -259,6 +315,53 @@ public class LibraryController {
                     String data[][] = theSearchBooks.dataValueAuthor();
                     String column[] = theSearchBooks.columnValueAuthor();
                     theView.setSearchedAuthorLibrarianView(data, column);
+                }
+
+
+            }catch (Exception e1){
+                e1.printStackTrace();
+            }
+        }
+    }
+
+
+    class searchBooksButtonListenerStudent implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            try{
+
+                String result = theSearchBooks.searchBooksByTitle(theView.getSearchedTitleStudent());
+                if (result.equals("No Such a Book!")){
+                    theView.displayErrorMessage(result);
+                }else if(result.equals("Blank Space. Please fill the Enter Title Field!")){
+                    theView.displayErrorMessage(result);
+                }else {
+                    String data[][] = theSearchBooks.dataValue();
+                    String column[] = theSearchBooks.columnValue();
+                    theView.setSearchedBooksStudent(data, column);
+                }
+
+
+            }catch (Exception e1){
+                e1.printStackTrace();
+            }
+        }
+    }
+
+    class searchBooksAuthorButtonListenerStudent implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            try{
+
+                String result = theSearchBooks.searchBooksByAuthor(theView.getSearchedAuthorStudent());
+                if (result.equals("No Books by this Author!")){
+                    theView.displayErrorMessage(result);
+                }else if(result.equals("Blank Space. Please fill the Enter Author Field!")){
+                    theView.displayErrorMessage(result);
+                }else {
+                    String data[][] = theSearchBooks.dataValueAuthor();
+                    String column[] = theSearchBooks.columnValueAuthor();
+                    theView.setSearchedAuthorStudentView(data, column);
                 }
 
 

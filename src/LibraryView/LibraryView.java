@@ -37,6 +37,20 @@ public class LibraryView extends JFrame {
     private JInternalFrame searchBooksIntFrameStudent;
     private JInternalFrame searchedBooksLibrarianView;
     private JInternalFrame searchedAuthorLibrarianView;
+    private JInternalFrame searchedBooksStudentView;
+    private JInternalFrame searchedAuthorStudentView;
+
+    //buttons inside SearchBooksStudentView by Author
+    private JButton searchBooksAuthorBackButtonStudent = new JButton("Back");
+
+    //buttons inside SearchBooksLibrarianView by Title
+    private JButton searchBooksBackButtonStudent = new JButton("Back");
+
+    //buttons inside SearchBooksLibrarianView by Author
+    private JButton searchBooksAuthorBackButtonLibrarian = new JButton("Back");
+
+    //buttons inside SearchBooksLibrarianView by Title
+    private JButton searchBooksBackButtonLibrarian = new JButton("Back");
 
     //buttons inside viewBooksIntFrame
     private JButton backButtonViewBooksLibrarian = new JButton("Back");
@@ -252,6 +266,27 @@ public class LibraryView extends JFrame {
 
     }
 
+    //Listener for the back button in search by title student frame
+    public void setSearchBooksIntFirstFrameStudentTitleSearch(ActionListener listenForBackButton){
+        searchBooksBackButtonStudent.addActionListener(listenForBackButton);
+    }
+
+    //listener for the back button in search by author student frame
+    public void setSearchBooksIntFirstFrameStudentAuthorSearch(ActionListener listenForBackButton){
+        searchBooksAuthorBackButtonStudent.addActionListener(listenForBackButton);
+    }
+
+
+    //Listener for the back button in search by title librarian frame
+    public void setSearchBooksIntFirstFrameLibrarianTitleSearch(ActionListener listenForBackButton){
+        searchBooksBackButtonLibrarian.addActionListener(listenForBackButton);
+    }
+
+    //listener for the back button in search by author librarian frame
+    public void setSearchBooksIntFirstFrameLibrarianAuthorSearch(ActionListener listenForBackButton){
+        searchBooksAuthorBackButtonLibrarian.addActionListener(listenForBackButton);
+    }
+
     //Listener for the Librarian Login button
     public void setLibrarianLogin(ActionListener listenForLibLoginButton){
         librarianLogin.addActionListener(listenForLibLoginButton);
@@ -455,6 +490,16 @@ public class LibraryView extends JFrame {
         searchBooksLibrarianInsideSearchAuthor.addActionListener(searchAuthorLibrarianListener);
     }
 
+    //Listener for the search books by title student
+    public void searchBooksInsideStudentButton(ActionListener searchBooksLibrarianListener){
+        searchBooksStudentInsideSearchTitle.addActionListener(searchBooksLibrarianListener);
+    }
+
+    //Listener for the search books by author student
+    public void searchAuthorInsideStudentButton(ActionListener searchAuthorLibrarianListener){
+        searchBooksStudentInsideSearchAuthor.addActionListener(searchAuthorLibrarianListener);
+    }
+
     //Internal Frame for the ViewBooks Frame Librarians
     public void setViewBooksLibrarian(String[][] data, String[] column){
         viewBooksIntFrameLibrarian = new JInternalFrame();
@@ -476,6 +521,50 @@ public class LibraryView extends JFrame {
     }
 
     //Internal Frame for the SearchBooks by title Frame Librarian
+    public void setSearchedBooksStudent(String[][]data, String[] column){
+
+        searchedBooksStudentView = new JInternalFrame();
+        JPanel panel = new JPanel();
+        panel.setLayout(new BorderLayout());
+        //backButtonViewBooksLibrarian.setFont(new Font("Serif",Font.BOLD,20));
+
+        JTable table = new JTable(data,column);
+        JScrollPane scrollPane = new JScrollPane(table);
+
+        panel.add(scrollPane,BorderLayout.CENTER);
+        searchBooksBackButtonStudent.setFont(new Font("Serif",Font.BOLD,20));
+        panel.add(searchBooksBackButtonStudent,BorderLayout.SOUTH);
+        //panel.add(backButtonViewBooksStudent,BorderLayout.SOUTH);
+        searchedBooksStudentView.add(panel);
+
+        searchBooksIntFrameStudent.dispose();
+        searchedBooksStudentView.setVisible(true);
+        this.add(searchedBooksStudentView);
+
+    }
+
+    //Internal Frame for the SearchBooks by author Frame Librarian
+    public void setSearchedAuthorStudentView(String[][] data, String[] column){
+
+        searchedAuthorStudentView = new JInternalFrame();
+        JPanel panel = new JPanel();
+        panel.setLayout(new BorderLayout());
+
+        JTable table = new JTable(data, column);
+        JScrollPane scrollPane = new JScrollPane(table);
+
+        panel.add(scrollPane,BorderLayout.CENTER);
+        searchBooksAuthorBackButtonStudent.setFont(new Font("Serif",Font.BOLD,20));
+        panel.add(searchBooksAuthorBackButtonStudent,BorderLayout.SOUTH);
+        searchedAuthorStudentView.add(panel);
+
+        searchBooksIntFrameStudent.dispose();
+        searchedAuthorStudentView.setVisible(true);
+        this.add(searchedAuthorStudentView);
+
+    }
+
+    //Internal Frame for the SearchBooks by title Frame Librarian
     public void setSearchedBooksLibrarian(String[][]data, String[] column){
 
         searchedBooksLibrarianView = new JInternalFrame();
@@ -487,6 +576,8 @@ public class LibraryView extends JFrame {
         JScrollPane scrollPane = new JScrollPane(table);
 
         panel.add(scrollPane,BorderLayout.CENTER);
+        searchBooksBackButtonLibrarian.setFont(new Font("Serif",Font.BOLD,20));
+        panel.add(searchBooksBackButtonLibrarian,BorderLayout.SOUTH);
         //panel.add(backButtonViewBooksStudent,BorderLayout.SOUTH);
         searchedBooksLibrarianView.add(panel);
 
@@ -507,6 +598,8 @@ public class LibraryView extends JFrame {
         JScrollPane scrollPane = new JScrollPane(table);
 
         panel.add(scrollPane,BorderLayout.CENTER);
+        searchBooksAuthorBackButtonLibrarian.setFont(new Font("Serif",Font.BOLD,20));
+        panel.add(searchBooksAuthorBackButtonLibrarian,BorderLayout.SOUTH);
         searchedAuthorLibrarianView.add(panel);
 
         searchBooksIntFrameLibrarian.dispose();
@@ -687,7 +780,7 @@ public class LibraryView extends JFrame {
         searchBooksIntFrameStudent = new JInternalFrame();
         JPanel searchStudentPanel = new JPanel();
         JPanel searchStudentInnerPanel = new JPanel();
-        JLabel frameTitle = new JLabel("Search by Title, Author or Both!");
+        JLabel frameTitle = new JLabel("Search by Title, Author or Both!Student!");
         frameTitle.setFont(new Font("Serif",Font.BOLD,40));
         JLabel enterTitle = new JLabel("Enter Title: ",SwingConstants.CENTER);
         enterTitle.setFont(new Font("Serif",Font.BOLD,26));
@@ -755,6 +848,30 @@ public class LibraryView extends JFrame {
 
     }
 
+    //Getting back to the first search librarian internal frame from search by title
+    public void setSearchBooksFirstFrameFromSearchTitleStudent(){
+        searchedBooksStudentView.dispose();
+        searchBooksIntFrameStudent.setVisible(true);
+    }
+
+    //Getting back to the first search Librarian internal frame from search by author
+    public void setSearchBooksFirstFrameFromSearchAuthorStudent(){
+        searchedAuthorStudentView.dispose();
+        searchBooksIntFrameStudent.setVisible(true);
+    }
+
+
+    //Getting back to the first search librarian internal frame from search by title
+    public void setSearchBooksFirstFrameFromSearchTitle(){
+        searchedBooksLibrarianView.dispose();
+        searchBooksIntFrameLibrarian.setVisible(true);
+    }
+
+    //Getting back to the first search Librarian internal frame from search by author
+    public void setSearchBooksFirstFrameFromSearchAuthor(){
+        searchedAuthorLibrarianView.dispose();
+        searchBooksIntFrameLibrarian.setVisible(true);
+    }
 
     //Getting back to the logged librarain from search books
     public void setLoggedLibrarianFromSearchBooks(){
@@ -1778,6 +1895,10 @@ public class LibraryView extends JFrame {
     }
 
     public String getSearchedAuthor(){return searchByAuthorLibrarian.getText();}
+
+    public String getSearchedTitleStudent(){return searchByTitleStudent.getText();}
+
+    public String getSearchedAuthorStudent(){return searchByAuthorStudent.getText();}
 
     public String getRemovedTitleBook(){
         return removeByBookTitle.getText();
