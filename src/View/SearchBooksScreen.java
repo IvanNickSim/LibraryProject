@@ -2,6 +2,7 @@ package View;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 /**
  * Created by megat0n on 21/08/2018.
@@ -95,10 +96,10 @@ public class SearchBooksScreen extends JFrame{
 
         this.add(searchBooksPanel);
 
+    }
 
-
-
-
+    public void backBtnListener(ActionListener backListen){
+        back.addActionListener(backListen);
     }
 
 }
