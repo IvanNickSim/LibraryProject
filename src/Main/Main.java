@@ -31,6 +31,7 @@ public class Main {
         ViewTakenBooksScreen theViewTakenBooksScreen = new ViewTakenBooksScreen();
 
 
+
         Home theHomeScreenController = new Home(theHomeScreen,theHistoryFirst,theContactScreen,theRegisterDefaultScreen,theStudentLoginScreen,theLibrarianLoginScreen);
         theHomeScreen.setVisible(true);
 
@@ -47,6 +48,8 @@ public class Main {
         LibrarianLogged theLoggedLibrarian = new LibrarianLogged(theLibrarianLoggedScreen,theLibrarianLoginScreen,theAddBooksScreen,theRemoveBooksScreen,theSearchBooksScreen,theViewBooksScreen,theIssuedBooksScreen);
         AddBooks theAddBooks = new AddBooks(theAddBooksScreen,theLibrarianLoggedScreen);
         ViewBooks theViewBooks = new ViewBooks(theViewBooksScreen,theLibrarianLoggedScreen);
+        RemoveBooks theRemoveBooks = new RemoveBooks(theRemoveBooksScreen,theLibrarianLoggedScreen);
+        SearchBooks theSearchBooks = new SearchBooks(theSearchBooksScreen,theLibrarianLoggedScreen);
     }
 
 }
