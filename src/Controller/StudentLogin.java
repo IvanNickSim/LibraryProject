@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.LoginUserM;
 import View.HomeScreen;
 import View.StudentScreenLogged;
 import View.StudentScreenLogin;
@@ -15,6 +16,7 @@ public class StudentLogin {
     private StudentScreenLogin theLoginStudentScreen;
     private StudentScreenLogged theLoggedStudentScreen;
     private HomeScreen theHomeScreen;
+    private boolean isStudent = false;
 
     public StudentLogin(StudentScreenLogin theLoginStudentScreen, StudentScreenLogged theLoggedStudentScreen, HomeScreen theHomeScreen){
 
@@ -43,11 +45,30 @@ public class StudentLogin {
         @Override
         public void actionPerformed(ActionEvent e) {
             try {
-                theLoginStudentScreen.dispose();
-                theLoggedStudentScreen.setVisible(true);
+                String username,password = null;
+                username = theLoginStudentScreen.getStudentLoginName();
+                password = theLoginStudentScreen.getStudentPassword();
+                if (LoginUserM.authenticateUser(username,password,false)) {
+                    theLoginStudentScreen.displayErrorMessage("Success!");
+                    theLoginStudentScreen.dispose();
+                    theLoggedStudentScreen.setVisible(true);
+                }else{
+                    System.out.println("Wrong!");
+                    theLoginStudentScreen.displayErrorMessage("Something went wrong! Please try again!");
+                }
+
             }catch (Exception e2){
                 e2.printStackTrace();
             }
         }
     }
+
+    public void setIsStudent(boolean isStudent){
+        this.isStudent = isStudent;
+    }
+
+    public boolean getIsStudent(){
+        return this.isStudent;
+    }
+
 }

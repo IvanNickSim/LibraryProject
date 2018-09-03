@@ -19,6 +19,8 @@ public class RemoveBooks {
         this.theLibrarianLoggedScreen = theLibrarianLoggedScreen;
 
         this.theRemoveBooksScreen.backBtnListener(new backButtonListener());
+        this.theRemoveBooksScreen.removeBookByTitle(new removeBookByTitleButton());
+        this.theRemoveBooksScreen.removeBooksByAuthor(new removeBookByAuthorButton());
 
     }
 
@@ -33,5 +35,29 @@ public class RemoveBooks {
             }
         }
     }
+
+    class removeBookByTitleButton implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            try {
+                theRemoveBooksScreen.displayErrorMessage("Clicked");
+            }catch (Exception e2){
+                e2.printStackTrace();
+            }
+        }
+    }
+
+    class removeBookByAuthorButton implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            try {
+                theRemoveBooksScreen.displayErrorMessage("Clicked");
+            }catch (Exception e3){
+                e3.printStackTrace();
+            }
+        }
+    }
+
+
 
 }

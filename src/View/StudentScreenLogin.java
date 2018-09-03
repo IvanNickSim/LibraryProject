@@ -15,6 +15,7 @@ public class StudentScreenLogin extends JFrame{
     private JPasswordField studentLoginPassword;
     private JButton loginStudent = new JButton("Login");
     private JButton backStudent = new JButton("Back");
+    private boolean isStudent = true;
 
     public StudentScreenLogin(){
 
@@ -101,6 +102,28 @@ public class StudentScreenLogin extends JFrame{
 
     public void loginBtnListener(ActionListener loginListen){
         loginStudent.addActionListener(loginListen);
+    }
+
+    public void setIsStudent(boolean isStudent){
+        this.isStudent = isStudent;
+    }
+
+    public boolean getIsStudent(){
+        return this.isStudent;
+    }
+
+    public String getStudentLoginName(){
+       return studentLoginUsername.getText();
+    }
+
+    public String getStudentPassword(){
+        return studentLoginPassword.getText();
+    }
+
+    public void displayErrorMessage(String errorMessage){
+
+        JOptionPane.showMessageDialog(this,errorMessage);
+
     }
 
 }

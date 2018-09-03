@@ -99,4 +99,19 @@ public class RemoveBooksScreen extends JFrame{
         backBtn.addActionListener(listenBack);
     }
 
+    public void removeBookByTitle(ActionListener listenRemoveByTitle){
+        removeBookTitle.addActionListener(listenRemoveByTitle);
+    }
+
+    public void removeBooksByAuthor(ActionListener listenRemoveByAuthor){
+        removeBookAuthor.addActionListener(listenRemoveByAuthor);
+    }
+
+    public void displayErrorMessage(String errorMessage){
+
+        JOptionPane.showMessageDialog(this,errorMessage);
+
+    }
+
+
 }

@@ -26,6 +26,10 @@ public class RegisterScreenLibrarian extends JFrame {
         this.setTitle("Library management app - register as librarian screen");
 
         registerLibrarianPanel = new JPanel();
+        /*username = new JTextField(20);
+        email = new JTextField(20);
+        secretWord = new JTextField(20);
+        password = new JPasswordField(20);*/
         JLabel title = new JLabel("Enter your data:");
         title.setFont(new Font("Serif", Font.BOLD, 28));
         JLabel uname = new JLabel("Username: ");

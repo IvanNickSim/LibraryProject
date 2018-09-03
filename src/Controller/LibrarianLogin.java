@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.LoginUserM;
 import View.HomeScreen;
 import View.LibrarianScreenLogged;
 import View.LibrarianScreenLogin;
@@ -15,6 +16,7 @@ public class LibrarianLogin {
     private LibrarianScreenLogin theLoginLibrarianScreen;
     private LibrarianScreenLogged theLoggedLibrarianScreen;
     private HomeScreen theHomeScreen;
+
 
     public LibrarianLogin(LibrarianScreenLogin theLoginLibrarianScreen, LibrarianScreenLogged theLoggedLibrarianScreen, HomeScreen theHomeScreen){
 
@@ -43,11 +45,22 @@ public class LibrarianLogin {
         @Override
         public void actionPerformed(ActionEvent e) {
             try {
-                theLoginLibrarianScreen.dispose();
-                theLoggedLibrarianScreen.setVisible(true);
+                String username,password = null;
+                username = theLoginLibrarianScreen.getLibrarianLoginName();
+                password = theLoginLibrarianScreen.getLibrarianPassword();
+                if (LoginUserM.authenticateUser(username,password,true)) {
+                   theLoginLibrarianScreen.displayErrorMessage("Success!");
+                    theLoginLibrarianScreen.dispose();
+                    theLoggedLibrarianScreen.setVisible(true);
+                }else{
+                    System.out.println("Wrong!");
+                    theLoginLibrarianScreen.displayErrorMessage("Something went wrong! Please try again!");
+                }
             }catch (Exception e2){
                 e2.printStackTrace();
             }
         }
     }
+
+
 }

@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.ViewBooksM;
 import View.*;
 
 import java.awt.event.ActionEvent;
@@ -17,8 +18,10 @@ public class LibrarianLogged {
     private SearchBooksScreen theSearchBooksScreen;
     private ViewBooksScreen theViewBooksScreen;
     private IssuedBooksScreen theIssuedBooksScreen;
+    private LoginUserScreen theLoginUserScreen;
+    private ViewBooksM theViewBooksModel;
 
-    public LibrarianLogged(LibrarianScreenLogged theLibrarianLoggedScreen, LibrarianScreenLogin theLibrarianLoginScreen,AddBooksScreen theAddBooksScreen,RemoveBooksScreen theRemoveBooksScreen,SearchBooksScreen theSearchBooksScreen,ViewBooksScreen theViewBooksScreen,IssuedBooksScreen theIssuedBooksScreen){
+    public LibrarianLogged(LibrarianScreenLogged theLibrarianLoggedScreen, LibrarianScreenLogin theLibrarianLoginScreen,AddBooksScreen theAddBooksScreen,RemoveBooksScreen theRemoveBooksScreen,SearchBooksScreen theSearchBooksScreen,ViewBooksScreen theViewBooksScreen,IssuedBooksScreen theIssuedBooksScreen,LoginUserScreen theLoginUserScreen, ViewBooksM theViewBooksModel){
 
         this.theLibrarianLoggedScreen = theLibrarianLoggedScreen;
         this.theLibrarianLoginScreen = theLibrarianLoginScreen;
@@ -27,6 +30,8 @@ public class LibrarianLogged {
         this.theAddBooksScreen = theAddBooksScreen;
         this.theRemoveBooksScreen = theRemoveBooksScreen;
         this.theIssuedBooksScreen = theIssuedBooksScreen;
+        this.theLoginUserScreen = theLoginUserScreen;
+        this.theViewBooksModel = theViewBooksModel;
 
         this.theLibrarianLoggedScreen.logoutBtnListener(new logoutButtonListener());
         this.theLibrarianLoggedScreen.viewBooksBtnListner(new viewBooksButtonListener());
@@ -44,7 +49,8 @@ public class LibrarianLogged {
         public void actionPerformed(ActionEvent e) {
             try {
                 theLibrarianLoggedScreen.dispose();
-                theLibrarianLoginScreen.setVisible(true);
+                //theLibrarianLoginScreen.setVisible(true);
+                theLoginUserScreen.setVisible(true);
             }catch (Exception e1){
                 e1.printStackTrace();
             }
@@ -57,6 +63,24 @@ public class LibrarianLogged {
             try {
                 theLibrarianLoggedScreen.dispose();
                 theViewBooksScreen.setVisible(true);
+                theViewBooksScreen.setIsStudent(false);
+
+                String[][] data = theViewBooksModel.dataValue();
+                String[] column = theViewBooksModel.columnValue();
+                for (int i = 0; i < column.length; i++){
+                    System.out.print(column[i] + " ");
+                }
+                System.out.println();
+
+                for (int i = 0; i < data.length; i++){
+                    for (int j = 0; j < data[i].length;j++){
+                        System.out.print(data[i][j] + " ");
+                    }
+                    System.out.println();
+                }
+
+                theViewBooksScreen.setViewBooksTable(data,column);
+
             }catch (Exception e2){
                 e2.printStackTrace();
             }
@@ -69,6 +93,7 @@ public class LibrarianLogged {
             try {
                 theLibrarianLoggedScreen.dispose();
                 theSearchBooksScreen.setVisible(true);
+                theViewBooksScreen.setIsStudent(false);
             }catch (Exception e3){
                 e3.printStackTrace();
             }
