@@ -1,6 +1,7 @@
 package Controller;
 
 import View.LibrarianScreenLogged;
+import View.StudentScreenLogged;
 import View.ViewBooksScreen;
 
 import java.awt.event.ActionEvent;
@@ -13,11 +14,13 @@ public class ViewBooks {
 
     private ViewBooksScreen theViewBooksScreen;
     private LibrarianScreenLogged theLoggedLibrarianScreen;
+    private StudentScreenLogged theLoggedStudentScreen;
 
-    public ViewBooks(ViewBooksScreen theViewBooksScreen, LibrarianScreenLogged theLoggedLibrarianScreen){
+    public ViewBooks(ViewBooksScreen theViewBooksScreen, LibrarianScreenLogged theLoggedLibrarianScreen, StudentScreenLogged theLoggedStudentScreen){
 
         this.theViewBooksScreen = theViewBooksScreen;
         this.theLoggedLibrarianScreen = theLoggedLibrarianScreen;
+        this.theLoggedStudentScreen = theLoggedStudentScreen;
 
         this.theViewBooksScreen.backBtnListener(new backButtonListener());
 
@@ -28,7 +31,11 @@ public class ViewBooks {
         public void actionPerformed(ActionEvent e) {
             try {
                 theViewBooksScreen.dispose();
-                theLoggedLibrarianScreen.setVisible(true);
+                if (theViewBooksScreen.getIsStudent()){
+                    theLoggedStudentScreen.setVisible(true);
+                }else {
+                    theLoggedLibrarianScreen.setVisible(true);
+                }
             }catch (Exception e1){
                 e1.printStackTrace();
             }

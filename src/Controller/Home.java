@@ -16,9 +16,13 @@ public class Home {
     private RegisterScreenDefault theRegisterDefaultScreen;
     private StudentScreenLogin theStudentLoginScreen;
     private LibrarianScreenLogin theLibrarianLoginScreen;
+    private LoginUserScreen theLoginUserScreen;
+    private LoginUser theLoginUser;
+    private ResetPasswordScreen theResetPassScreen;
 
 
-    public Home(HomeScreen theHomeScreen, HistoryScreenFirst theHistoryFirstScreen, ContactScreen theContactScreen, RegisterScreenDefault theRegisterDefaultScreen, StudentScreenLogin theStudentLoginScreen, LibrarianScreenLogin theLibrarianLoginScreen){
+
+    public Home(HomeScreen theHomeScreen, HistoryScreenFirst theHistoryFirstScreen, ContactScreen theContactScreen, RegisterScreenDefault theRegisterDefaultScreen, StudentScreenLogin theStudentLoginScreen, LibrarianScreenLogin theLibrarianLoginScreen, LoginUserScreen theLoginUserScreen,LoginUser theLoginUser,ResetPasswordScreen theResetPassScreen){
 
         this.theHomeScreen = theHomeScreen;
         this.theHistoryFirstScreen = theHistoryFirstScreen;
@@ -26,12 +30,16 @@ public class Home {
         this.theRegisterDefaultScreen = theRegisterDefaultScreen;
         this.theStudentLoginScreen = theStudentLoginScreen;
         this.theLibrarianLoginScreen = theLibrarianLoginScreen;
+        this.theLoginUserScreen = theLoginUserScreen;
+        this.theLoginUser = theLoginUser;
+        this.theResetPassScreen = theResetPassScreen;
 
         this.theHomeScreen.historyBtnListener(new historyButtonListener());
         this.theHomeScreen.contactBtnListener(new contactButtonListener());
         this.theHomeScreen.registerBtnListener(new registerButtonListener());
         this.theHomeScreen.studentLoginBtnListener(new loginStudentButtonListener());
         this.theHomeScreen.librarianLoginBtnListener(new loginLibrarianButtonListener());
+        this.theHomeScreen.forgotPassBtnListener(new forgotPassButtonListener());
     }
 
     class historyButtonListener implements ActionListener{
@@ -43,6 +51,18 @@ public class Home {
 
             }catch (Exception e1){
                 e1.printStackTrace();
+            }
+        }
+    }
+
+    class forgotPassButtonListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            try {
+                theHomeScreen.setVisible(false);
+                theResetPassScreen.setVisible(true);
+            }catch (Exception e6){
+                e6.printStackTrace();
             }
         }
     }
@@ -76,7 +96,14 @@ public class Home {
         public void actionPerformed(ActionEvent e) {
             try {
                 theHomeScreen.dispose();
-                theStudentLoginScreen.setVisible(true);
+               // theStudentLoginScreen.setVisible(true);
+                //theStudentLoginScreen.setIsStudent(true);
+                //System.out.println(theStudentLoginScreen.getIsStudent());
+                theLoginUserScreen.setVisible(true);
+                theLoginUserScreen.setIsStudent(true);
+                theLoginUser.setIsStudent(true);
+                System.out.println(theLoginUserScreen.getIsStudent());
+
             }catch (Exception e4){
                 e4.printStackTrace();
             }
@@ -88,7 +115,15 @@ public class Home {
         public void actionPerformed(ActionEvent e) {
             try {
                 theHomeScreen.dispose();
-                theLibrarianLoginScreen.setVisible(true);
+                //theLibrarianLoginScreen.setVisible(true);
+                //theLibrarianLoginScreen.setIsStudent(false);
+                //System.out.println(theLibrarianLoginScreen.getIsStudent());
+                theLoginUserScreen.setVisible(true);
+                theLoginUserScreen.setIsStudent(false);
+                theLoginUser.setIsStudent(false);
+                System.out.println(theLoginUserScreen.getIsStudent());
+
+
             }catch (Exception e5){
                 e5.printStackTrace();
             }

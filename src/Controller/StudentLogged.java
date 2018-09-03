@@ -13,6 +13,7 @@ public class StudentLogged {
 
     private StudentScreenLogged theStudentLoggedScreen;
     private StudentScreenLogin theStudentLoginScreen;
+    private LoginUserScreen theUserLoginScreen;
 
     private ViewBooksScreen theViewBooksScreen;
     private SearchBooksScreen theSearchBooksScreen;
@@ -22,7 +23,7 @@ public class StudentLogged {
 
 
 
-    public StudentLogged(StudentScreenLogged theStudentLoggedScreen, StudentScreenLogin theStudentLoginScreen, SearchBooksScreen theSearchBooksScreen,ViewBooksScreen theViewBooksScreen,TakeBooksScreen theTakeBooksScreen,ReturnBooksScreen theReturnBooksScreen,ViewTakenBooksScreen theViewTakenBooksScreen){
+    public StudentLogged(StudentScreenLogged theStudentLoggedScreen, StudentScreenLogin theStudentLoginScreen, SearchBooksScreen theSearchBooksScreen,ViewBooksScreen theViewBooksScreen,TakeBooksScreen theTakeBooksScreen,ReturnBooksScreen theReturnBooksScreen,ViewTakenBooksScreen theViewTakenBooksScreen,LoginUserScreen theUserLoginScreen){
 
         this.theStudentLoggedScreen = theStudentLoggedScreen;
         this.theStudentLoginScreen = theStudentLoginScreen;
@@ -31,7 +32,7 @@ public class StudentLogged {
         this.theTakeBooksScreen = theTakeBooksScreen;
         this.theReturnBooksScreen = theReturnBooksScreen;
         this.theViewTakenBooksScreen = theViewTakenBooksScreen;
-
+        this.theUserLoginScreen = theUserLoginScreen;
 
         this.theStudentLoggedScreen.searchBooksBtnListner(new searchBooksButtonListener());
         this.theStudentLoggedScreen.viewBooksBtnListner(new viewBooksButtonListener());
@@ -49,6 +50,7 @@ public class StudentLogged {
             try {
                 theStudentLoggedScreen.dispose();
                 theSearchBooksScreen.setVisible(true);
+                theSearchBooksScreen.setIsStudent(true);
             }catch (Exception e3){
                 e3.printStackTrace();
             }
@@ -61,6 +63,7 @@ public class StudentLogged {
             try {
                 theStudentLoggedScreen.dispose();
                 theViewBooksScreen.setVisible(true);
+                theViewBooksScreen.setIsStudent(true);
             }catch (Exception e2){
                 e2.printStackTrace();
             }
@@ -109,7 +112,8 @@ public class StudentLogged {
         public void actionPerformed(ActionEvent e) {
             try {
                 theStudentLoggedScreen.dispose();
-                theStudentLoginScreen.setVisible(true);
+                //theStudentLoginScreen.setVisible(true);
+                theUserLoginScreen.setVisible(true);
             }catch (Exception e1){
                 e1.printStackTrace();
             }

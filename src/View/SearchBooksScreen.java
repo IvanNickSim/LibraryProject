@@ -16,6 +16,7 @@ public class SearchBooksScreen extends JFrame{
     private JButton back = new JButton("Back");
     private JTextField searchByTitle;
     private JTextField searchByAuthor;
+    private boolean isStudent = false;
 
     public SearchBooksScreen(){
 
@@ -100,6 +101,77 @@ public class SearchBooksScreen extends JFrame{
 
     public void backBtnListener(ActionListener backListen){
         back.addActionListener(backListen);
+    }
+
+    public boolean getIsStudent(){
+        return isStudent;
+    }
+
+    public void setIsStudent(boolean isStudents){
+        this.isStudent = isStudents;
+    }
+
+    public void searchByTitleBtnListner(ActionListener listenSearchTitle){
+        searchBooksTitle.addActionListener(listenSearchTitle);
+    }
+
+    public void searchByAuthorBtnListener(ActionListener listenSearchAuthor){
+        searchBooksAuthor.addActionListener(listenSearchAuthor);
+    }
+
+    public void searchByBothBtnListener(ActionListener listenSearchBoth){
+        searchBooksBoth.addActionListener(listenSearchBoth);
+    }
+
+    public void displayErrorMessage(String errorMessage){
+
+        JOptionPane.showMessageDialog(this,errorMessage);
+
+    }
+
+    public String getSearchedTitle(){
+        return searchByTitle.getText();
+    }
+
+    public String getSearchedAuthor(){return searchByAuthor.getText();}
+
+
+    public void setSearchedBooks(String[][]data, String[] column){
+        JTable table = new JTable(data,column);
+        JScrollPane scrollPane = new JScrollPane(table);
+
+        searchBooksPanel.add(scrollPane,BorderLayout.CENTER);
+
+    }
+
+
+
+
+    //Internal Frame for the SearchBooks by author Frame Librarian
+    public void setSearchedAuthor(String[][] data, String[] column){
+
+
+
+        JTable table = new JTable(data, column);
+        JScrollPane scrollPane = new JScrollPane(table);
+
+        searchBooksPanel.add(scrollPane,BorderLayout.CENTER);
+    }
+
+    public String getSearchByTitle(){
+        return this.searchByTitle.toString();
+    }
+
+    public void setSearchByTitle(String title){
+        this.searchByTitle.setText(title);
+    }
+
+    public String getSearchByAuthor(){
+        return this.searchByAuthor.toString();
+    }
+
+    public void setSearchByAuthor(String author){
+        this.searchByAuthor.setText(author);
     }
 
 }

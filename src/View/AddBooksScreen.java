@@ -4,6 +4,7 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.sql.Date;
 
 /**
  * Created by megat0n on 21/08/2018.
@@ -130,5 +131,64 @@ public class AddBooksScreen extends JFrame{
     public void backBtnListener(ActionListener backListen){
         addBooksBackButton.addActionListener(backListen);
     }
+
+    public void addBooksBtnListener(ActionListener addBooksListen){
+        addBookButton.addActionListener(addBooksListen);
+    }
+
+    public void displayErrorMessage(String errorMessage){
+
+        JOptionPane.showMessageDialog(this,errorMessage);
+
+    }
+
+    public String getBookTitle(){
+        return this.bookTitle.getText();
+    }
+
+    public void setBookTitle(String bookTitle){
+        this.bookTitle.setText(bookTitle);
+    }
+
+    public String getBookAuthor(){
+        return this.bookAuthor.getText();
+    }
+
+    public void setBookAuthor(String bookAuthor){
+        this.bookAuthor.setText(bookAuthor);
+    }
+
+    public int getBookISBN(){
+       return Integer.parseInt(bookISBN.getText().trim());
+    }
+
+    public void setBookISBN(String bookISBN){
+        //this.bookISBN.setText(Integer.toString(bookISBN));
+        this.bookISBN.setText(bookISBN);
+    }
+
+    public Date getBookDate(){
+        Date da = null;
+        try {
+            da = Date.valueOf(bookDate.getText());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return da;
+    }
+
+    public void setBookDate(String bookDate){
+        this.bookDate.setText(bookDate);
+    }
+
+    public int getBookQuantity(){
+        return Integer.parseInt(bookQuantity.getText().trim());
+    }
+
+    public void setBookQuantity(String bookQuantity){
+        //this.bookQuantity.setText(Integer.toString(bookQuantity));
+        this.bookQuantity.setText(bookQuantity);
+    }
+
 
 }

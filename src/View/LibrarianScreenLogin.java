@@ -15,7 +15,7 @@ public class LibrarianScreenLogin extends JFrame{
     private JPasswordField librarianLoginPassword;
     private JButton loginLib = new JButton("Login");
     private JButton backLibrarian = new JButton("Back");
-
+    private boolean isStudent = false;
 
     public LibrarianScreenLogin(){
 
@@ -104,4 +104,25 @@ public class LibrarianScreenLogin extends JFrame{
         loginLib.addActionListener(loginListen);
     }
 
+    public void setIsStudent(boolean isStudent){
+        this.isStudent = isStudent;
+    }
+
+    public boolean getIsStudent(){
+        return this.isStudent;
+    }
+
+    public String getLibrarianLoginName(){
+        return librarianLoginUsername.getText();
+    }
+
+    public String getLibrarianPassword(){
+        return librarianLoginPassword.getText();
+    }
+
+    public void displayErrorMessage(String errorMessage){
+
+        JOptionPane.showMessageDialog(this,errorMessage);
+
+    }
 }

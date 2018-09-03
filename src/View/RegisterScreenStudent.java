@@ -10,10 +10,10 @@ import java.awt.event.ActionListener;
 public class RegisterScreenStudent extends JFrame {
 
     private JPanel registerStudentPanel;
-    private JTextField username = new JTextField(20);
-    private JTextField email = new JTextField(20);
-    private JTextField secretWord = new JTextField(20);
-    private JPasswordField password = new JPasswordField(20);
+    private JTextField username;
+    private JTextField email;
+    private JTextField secretWord;
+    private JPasswordField password;
     private JButton registerBtn = new JButton("Register");
     private JButton backBtn = new JButton("Back");
 
@@ -26,6 +26,10 @@ public class RegisterScreenStudent extends JFrame {
         this.setTitle("Library management app - register as student screen");
 
         registerStudentPanel = new JPanel();
+        username = new JTextField(20);
+        email = new JTextField(20);
+        secretWord = new JTextField(20);
+        password = new JPasswordField(20);
         JLabel title = new JLabel("Enter your data:");
         title.setFont(new Font("Serif", Font.BOLD, 28));
         JLabel uname = new JLabel("Username: ");

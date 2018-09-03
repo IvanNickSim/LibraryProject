@@ -11,6 +11,11 @@ public class ViewBooksScreen extends JFrame{
 
     private JPanel viewBooksPanel;
     private JButton backBtn = new JButton("Back");
+    private boolean isStudent = false;
+    private String[][] data;
+    private String[] column;
+
+
 
     public ViewBooksScreen(){
 
@@ -24,10 +29,12 @@ public class ViewBooksScreen extends JFrame{
         viewBooksPanel.setLayout(new BorderLayout());
         backBtn.setFont(new Font("Serif",Font.BOLD,20));
 
-        JTable table = new JTable();
+
+/*
+        JTable table = new JTable(data,column);
         JScrollPane scrollPane = new JScrollPane(table);
 
-        viewBooksPanel.add(scrollPane,BorderLayout.CENTER);
+        viewBooksPanel.add(scrollPane,BorderLayout.CENTER);*/
         viewBooksPanel.add(backBtn,BorderLayout.SOUTH);
 
 
@@ -36,8 +43,25 @@ public class ViewBooksScreen extends JFrame{
 
     }
 
+    public void setViewBooksTable(String[][]data, String[] column){
+        JTable table = new JTable(data,column);
+        JScrollPane scrollPane = new JScrollPane(table);
+
+        viewBooksPanel.add(scrollPane,BorderLayout.CENTER);
+
+    }
+
     public void backBtnListener(ActionListener backListen){
+
         backBtn.addActionListener(backListen);
+    }
+
+    public boolean getIsStudent(){
+        return isStudent;
+    }
+
+    public void setIsStudent(boolean isStudents){
+        this.isStudent = isStudents;
     }
 
 }

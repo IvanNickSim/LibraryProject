@@ -17,6 +17,7 @@ public class LibrarianScreenLogged extends JFrame {
     private JButton removeBook = new JButton("Remove books");
     private JButton issuedBooks = new JButton("View issued books");
     private JButton logout = new JButton("Logout");
+    private boolean isStudent = false;
 
     public LibrarianScreenLogged(){
 
@@ -98,6 +99,7 @@ public class LibrarianScreenLogged extends JFrame {
 
 
     public void viewBooksBtnListner(ActionListener viewBooksListener){
+
         viewBooks.addActionListener(viewBooksListener);
     }
 
@@ -122,5 +124,12 @@ public class LibrarianScreenLogged extends JFrame {
     }
 
 
+    public boolean getIsStudent(){
+        return isStudent;
+    }
+
+    public void setIsStudent(boolean isStudents){
+        this.isStudent = isStudents;
+    }
 
 }
