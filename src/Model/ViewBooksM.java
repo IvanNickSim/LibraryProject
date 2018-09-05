@@ -39,7 +39,7 @@ public class ViewBooksM {
         try {
 
             conn = createConnection();
-            statement = conn.prepareStatement("SELECT * FROM booksdatabase",ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
+            statement = conn.prepareStatement("SELECT * FROM booksdatabase ORDER BY bookTitle",ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
             resultSet = statement.executeQuery();
             ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
             int cols = resultSetMetaData.getColumnCount();
@@ -59,7 +59,7 @@ public class ViewBooksM {
         try {
 
             conn = createConnection();
-            statement = conn.prepareStatement("SELECT * FROM booksdatabase",ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
+            statement = conn.prepareStatement("SELECT * FROM booksdatabase ORDER BY bookTitle",ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
             resultSet = statement.executeQuery();
             ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
             int cols = resultSetMetaData.getColumnCount();

@@ -73,7 +73,7 @@ public class User {
 
         Connection conn = null;
         String url = null;
-        if (isLibrarian) {
+        if (!isLibrarian) {
             url = "jdbc:mysql://localhost:3306/librarianaccounts";
         }else {
             url = "jdbc:mysql://localhost:3306/studentaccounts";
@@ -282,7 +282,7 @@ public class User {
 
             conn = createConnection(isLibrarian);
             System.out.println("Authenticate User " + isLibrarian);
-            if (isLibrarian){
+            if (!isLibrarian){
                 query = "SELECT userName,password FROM librarianaccounts";
             }else{
                 query = "SELECT userName,password FROM studentaccounts";

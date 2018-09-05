@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.RemoveBooksM;
 import View.LibrarianScreenLogged;
 import View.RemoveBooksScreen;
 
@@ -13,10 +14,12 @@ public class RemoveBooks {
 
     private RemoveBooksScreen theRemoveBooksScreen;
     private LibrarianScreenLogged theLibrarianLoggedScreen;
+    private RemoveBooksM theRemoveBooksM;
 
-    public RemoveBooks(RemoveBooksScreen theRemoveBooksScreen, LibrarianScreenLogged theLibrarianLoggedScreen){
+    public RemoveBooks(RemoveBooksScreen theRemoveBooksScreen, LibrarianScreenLogged theLibrarianLoggedScreen, RemoveBooksM theRemoveBooksM){
         this.theRemoveBooksScreen = theRemoveBooksScreen;
         this.theLibrarianLoggedScreen = theLibrarianLoggedScreen;
+        this.theRemoveBooksM = theRemoveBooksM;
 
         this.theRemoveBooksScreen.backBtnListener(new backButtonListener());
         this.theRemoveBooksScreen.removeBookByTitle(new removeBookByTitleButton());
@@ -51,7 +54,11 @@ public class RemoveBooks {
         @Override
         public void actionPerformed(ActionEvent e) {
             try {
-                theRemoveBooksScreen.displayErrorMessage("Clicked");
+                if (theRemoveBooksM.removeAllBooksByAuthor(theRemoveBooksScreen.getAuthor())){
+                    theRemoveBooksScreen.displayErrorMessage("Successfully removed all books by " + theRemoveBooksScreen.getAuthor());
+                }else{
+                    theRemoveBooksScreen.displayErrorMessage("Something went wrong. Please try again.");
+                }
             }catch (Exception e3){
                 e3.printStackTrace();
             }

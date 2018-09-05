@@ -2,10 +2,7 @@ package Controller;
 
 import Model.Book;
 import Model.SearchBooksM;
-import View.LibrarianScreenLogged;
-import View.SearchBooksScreen;
-import View.StudentScreenLogged;
-import View.ViewBooksScreen;
+import View.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,14 +17,16 @@ public class SearchBooks {
     private StudentScreenLogged theStudentLoggedScreen;
     private SearchBooksM theSearchBooks;
     private ViewBooksScreen theViewBooksScreen;
+    private ViewSearchedBooksScreen theViewSearchedBooksScreen;
 
-    public SearchBooks(SearchBooksScreen theSearchBooksScreen, LibrarianScreenLogged theLibrarianLoggedScreen, StudentScreenLogged theStudentLoggedScreen, SearchBooksM theSearchBooks, ViewBooksScreen theViewBooksScreen){
+    public SearchBooks(SearchBooksScreen theSearchBooksScreen, LibrarianScreenLogged theLibrarianLoggedScreen, StudentScreenLogged theStudentLoggedScreen, SearchBooksM theSearchBooks, ViewBooksScreen theViewBooksScreen, ViewSearchedBooksScreen theViewSearchedBooksScreen){
 
         this.theSearchBooksScreen = theSearchBooksScreen;
         this.theLibrarianLoggedScreen = theLibrarianLoggedScreen;
         this.theStudentLoggedScreen = theStudentLoggedScreen;
         this.theSearchBooks = theSearchBooks;
         this.theViewBooksScreen = theViewBooksScreen;
+        this.theViewSearchedBooksScreen = theViewSearchedBooksScreen;
 
         this.theSearchBooksScreen.backBtnListener(new backButtonListener());
         this.theSearchBooksScreen.searchByAuthorBtnListener(new searchByAuthorButtonListener());
@@ -72,13 +71,18 @@ public class SearchBooks {
                         }
                         System.out.println();
                     }
-                    System.out.println("FUCKING SON OF A BITCH");
-                    theViewBooksScreen.setViewBooksTable(data,column);
+                    /*theViewBooksScreen.setViewBooksTable(data,column);
                     theViewBooksScreen.setVisible(true);
                     theSearchBooksScreen.setSearchByTitle(null);
                     theSearchBooksScreen.dispose();
                    // theSearchBooksScreen.setSearchedBooks(data,column);
-                   // theSearchBooksScreen.setVisible(true);
+                   // theSearchBooksScreen.setVisible(true);*/
+
+                    theViewSearchedBooksScreen.setIsStudent(theSearchBooksScreen.getIsStudent());
+                    theViewSearchedBooksScreen.setVisible(true);
+                    theViewSearchedBooksScreen.setViewSearchBooksTable(data,column);
+                    theSearchBooksScreen.dispose();
+
                 }else{
                     theSearchBooksScreen.displayErrorMessage("Something went wrong. Please try again!");
                 }
@@ -115,7 +119,28 @@ public class SearchBooks {
                 }else {
                     String data[][] = theSearchBooks.dataValueAuthor();
                     String column[] = theSearchBooks.columnValueAuthor();
-                    theSearchBooksScreen.setSearchedAuthor(data, column);
+                    for (int i = 0; i < column.length; i++){
+                        System.out.print(column[i] + " ");
+                    }
+                    System.out.println();
+
+                    for (int i = 0; i < data.length; i++){
+                        for (int j = 0; j < data[i].length;j++){
+                            System.out.print(data[i][j] + " ");
+                        }
+                        System.out.println();
+                    }
+
+                    //theSearchBooksScreen.setSearchedAuthor(data, column);
+                   // theSearchBooksScreen.setVisible(true);
+                    /*theViewBooksScreen.setViewBooksTable(data,column);
+                    theViewBooksScreen.setVisible(true);
+                    theSearchBooksScreen.dispose();*/
+
+                    theViewSearchedBooksScreen.setIsStudent(theSearchBooksScreen.getIsStudent());
+                    theViewSearchedBooksScreen.setVisible(true);
+                    theViewSearchedBooksScreen.setViewSearchBooksTable(data,column);
+                    theSearchBooksScreen.dispose();
                 }
 
 
