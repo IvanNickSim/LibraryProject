@@ -20,6 +20,7 @@ public class LoginUser {
     private StudentScreenLogged theLoggedStudentScreen;
     private HomeScreen theHomeScreen;
     private boolean isStudent = false;
+    private String loggedStudentUsername;
 
 
     public LoginUser(LoginUserScreen theLoginUserScreen, LibrarianScreenLogged theLoggedLibrarianScreen, StudentScreenLogged theLoggedStudentScreen, HomeScreen theHomeScreen){
@@ -28,6 +29,7 @@ public class LoginUser {
         this.theLoggedLibrarianScreen = theLoggedLibrarianScreen;
         this.theLoggedStudentScreen = theLoggedStudentScreen;
         this.theHomeScreen = theHomeScreen;
+
 
         this.theLoginUserScreen.backBtnListener(new backButtonListener());
         this.theLoginUserScreen.loginBtnListener(new loginButtonListener());
@@ -57,11 +59,15 @@ public class LoginUser {
                 password = theLoginUserScreen.getPassword();*/
                 System.out.println("Am I Student? " + isStudent);
                 User user = new User(theLoginUserScreen.getUsername(),theLoginUserScreen.getPassword());
+                System.out.println(theLoginUserScreen.getUsername());
+                loggedStudentUsername = theLoginUserScreen.getUsername();
+
                 if (user.authenticateUser(isStudent)){
                     theLoginUserScreen.displayErrorMessage("Success!");
                     theLoginUserScreen.dispose();
                     if (isStudent){
                         theLoggedStudentScreen.setVisible(true);
+                        theLoggedStudentScreen.setLoggedStudentUsername(loggedStudentUsername);
                         theLoginUserScreen.setUsername(null);
                         theLoginUserScreen.setPassword(null);
                     }else {
@@ -103,5 +109,12 @@ public class LoginUser {
         return this.isStudent;
     }
 
+    public String getLoggedStudentUsername(){
+        return this.loggedStudentUsername;
+    }
+
+    public void setLoggedStudentUsername(String username){
+        this.loggedStudentUsername = username;
+    }
 
 }

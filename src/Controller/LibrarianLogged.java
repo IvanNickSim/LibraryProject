@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.ViewBooksM;
+import Model.ViewIssuedBooksM;
 import View.*;
 
 import java.awt.event.ActionEvent;
@@ -17,11 +18,12 @@ public class LibrarianLogged {
     private RemoveBooksScreen theRemoveBooksScreen;
     private SearchBooksScreen theSearchBooksScreen;
     private ViewBooksScreen theViewBooksScreen;
-    private IssuedBooksScreen theIssuedBooksScreen;
+    private ViewIssuedBooksScreen theIssuedBooksScreen;
     private LoginUserScreen theLoginUserScreen;
     private ViewBooksM theViewBooksModel;
+    private ViewIssuedBooksM theViewIssuedBooksM;
 
-    public LibrarianLogged(LibrarianScreenLogged theLibrarianLoggedScreen, LibrarianScreenLogin theLibrarianLoginScreen,AddBooksScreen theAddBooksScreen,RemoveBooksScreen theRemoveBooksScreen,SearchBooksScreen theSearchBooksScreen,ViewBooksScreen theViewBooksScreen,IssuedBooksScreen theIssuedBooksScreen,LoginUserScreen theLoginUserScreen, ViewBooksM theViewBooksModel){
+    public LibrarianLogged(LibrarianScreenLogged theLibrarianLoggedScreen, LibrarianScreenLogin theLibrarianLoginScreen,AddBooksScreen theAddBooksScreen,RemoveBooksScreen theRemoveBooksScreen,SearchBooksScreen theSearchBooksScreen,ViewBooksScreen theViewBooksScreen,ViewIssuedBooksScreen theIssuedBooksScreen,LoginUserScreen theLoginUserScreen, ViewBooksM theViewBooksModel,ViewIssuedBooksM theViewIssuedBooksM){
 
         this.theLibrarianLoggedScreen = theLibrarianLoggedScreen;
         this.theLibrarianLoginScreen = theLibrarianLoginScreen;
@@ -32,6 +34,7 @@ public class LibrarianLogged {
         this.theIssuedBooksScreen = theIssuedBooksScreen;
         this.theLoginUserScreen = theLoginUserScreen;
         this.theViewBooksModel = theViewBooksModel;
+        this.theViewIssuedBooksM = theViewIssuedBooksM;
 
         this.theLibrarianLoggedScreen.logoutBtnListener(new logoutButtonListener());
         this.theLibrarianLoggedScreen.viewBooksBtnListner(new viewBooksButtonListener());
@@ -128,8 +131,12 @@ public class LibrarianLogged {
         @Override
         public void actionPerformed(ActionEvent e) {
             try {
+                String[][] data = theViewIssuedBooksM.dataValue();
+                String[] column = theViewIssuedBooksM.columnValue();
+
                 theLibrarianLoggedScreen.dispose();
                 theIssuedBooksScreen.setVisible(true);
+                theIssuedBooksScreen.setViewIssuedBooksTable(data,column);
             }catch (Exception e3){
                 e3.printStackTrace();
             }

@@ -113,5 +113,9 @@ public class RemoveBooksScreen extends JFrame{
 
     }
 
+    public String getAuthor(){
+        return this.removeByBookAuthor.getText();
+    }
+
 
 }

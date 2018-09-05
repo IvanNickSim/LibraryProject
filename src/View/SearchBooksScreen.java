@@ -16,7 +16,7 @@ public class SearchBooksScreen extends JFrame{
     private JButton back = new JButton("Back");
     private JTextField searchByTitle;
     private JTextField searchByAuthor;
-    private boolean isStudent = false;
+    private boolean isStudent;
 
     public SearchBooksScreen(){
 

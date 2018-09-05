@@ -17,6 +17,7 @@ public class StudentScreenLogged extends JFrame{
     private JButton returnBook = new JButton("Return a book");
     private JButton takenBooks = new JButton("View taken books");
     private JButton logout = new JButton("Logout");
+    private String loggedStudentUsername;
 
     public StudentScreenLogged(){
 
@@ -118,6 +119,14 @@ public class StudentScreenLogged extends JFrame{
 
     public void logoutBtnListener(ActionListener logoutListener){
         logout.addActionListener(logoutListener);
+    }
+
+    public String getLoggedStudentUsername(){
+        return this.loggedStudentUsername;
+    }
+
+    public void setLoggedStudentUsername(String username){
+        this.loggedStudentUsername = username;
     }
 
 }

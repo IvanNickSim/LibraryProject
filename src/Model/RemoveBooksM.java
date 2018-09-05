@@ -53,7 +53,7 @@ public class RemoveBooksM {
 
     }
 
-    public void removeAllBooksByAuthor(String authorFullname){
+    public boolean removeAllBooksByAuthor(String authorFullname){
 
         bookAuthor = authorFullname;
 
@@ -63,12 +63,15 @@ public class RemoveBooksM {
             String query = "DELETE from booksdatabase WHERE bookAuthor = ? ";
             preparedStatement = conn.prepareStatement(query);
             preparedStatement.setString(1,bookAuthor);
-            preparedStatement.executeUpdate();
+            int i = preparedStatement.executeUpdate();
+            if (i != 0) {
+                return true;
+            }
 
         }catch (SQLException sql){
             sql.printStackTrace();
         }
-
+        return false;
     }
 
 }
